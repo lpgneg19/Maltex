@@ -88,8 +88,18 @@ jobs:
           file Build/arm64/AppleSword.app/Contents/MacOS/AppleSword
 
       - name: Create DMGs
+        id: create_dmgs
         run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
+          # Safe version extraction
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          else
+            VERSION="manual-$(date +%Y%m%d%H%M%S)"
+          fi
+          # Sanitize: replace / with - to avoid path issues
+          VERSION=${VERSION//\//-}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
           
           # Universal
           create-dmg \
@@ -134,9 +144,13 @@ jobs:
         id: extract_release_notes
         run: |
           # Extract the content of the latest version from CHANGELOG.md
-          # This skips the first header and stops before the next header
-          RELEASE_NOTES=$(awk '/^## \[/{if (count++) exit; next} count' CHANGELOG.md)
+          RELEASE_NOTES=$(awk '/^## \[/{if (count++) exit; next} count' CHANGELOG.md || echo "Manual build from branch $GITHUB_REF")
           
+          # Handle empty notes
+          if [ -z "$RELEASE_NOTES" ]; then
+            RELEASE_NOTES="Manual build from branch $GITHUB_REF"
+          fi
+
           # Handle multi-line output for GitHub Actions environment variables
           echo "notes<<EOF" >> $GITHUB_OUTPUT
           echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
@@ -145,6 +159,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: v${{ env.VERSION }}
+          draft: ${{ github.event_name == 'workflow_dispatch' }}
           body: ${{ steps.extract_release_notes.outputs.notes }}
           files: |
             AppleSword-*-Universal.dmg
