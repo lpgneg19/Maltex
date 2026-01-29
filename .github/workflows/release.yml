@@ -39,12 +39,16 @@ jobs:
             -scheme AppleSword \
             -destination "platform=macOS" \
             -configuration Release \
+            -derivedDataPath ./DerivedData \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
+            DEBUG_INFORMATION_FORMAT=dwarf \
+            ENABLE_APP_INTENTS_METADATA_EXTRACTION=NO \
             ONLY_ACTIVE_ARCH=NO \
             MACOSX_DEPLOYMENT_TARGET=15.0 \
             SWIFT_STRICT_CONCURRENCY=minimal \
+            COMPILER_INDEX_STORE_ENABLE=NO \
             BUILD_DIR=Build
 
       - name: Prepare Universal App
