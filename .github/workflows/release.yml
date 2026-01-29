@@ -40,21 +40,23 @@ jobs:
           </plist>
           EOF
 
-      - name: Build Universal Archive
+      - name: Build Universal App
         run: |
-          xcodebuild archive \
+          xcodebuild build \
             -scheme AppleSword \
-            -destination "generic/platform=macOS" \
-            -archivePath AppleSword.xcarchive \
+            -destination "platform=macOS" \
+            -configuration Release \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            BUILD_DIR=Build
 
-      - name: Export Universal App
+      - name: Prepare Universal App
         run: |
-          # Exporting manually to avoid signing issues in CI without certs
-          mkdir -p Build/Universal/AppleSword.app
-          cp -R AppleSword.xcarchive/Products/Applications/AppleSword.app/ Build/Universal/AppleSword.app/
+          mkdir -p Build/Universal
+          cp -R Build/Release/AppleSword.app Build/Universal/
+          # Ad-hoc sign the app to ensure system features like vibrancy work correctly
+          codesign --force --deep --sign - Build/Universal/AppleSword.app
 
       - name: Split Architectures (x86_64 & arm64)
         run: |
@@ -65,11 +67,17 @@ jobs:
           cp -R Build/Universal/AppleSword.app/ Build/x86_64/AppleSword.app/
           cp -R Build/Universal/AppleSword.app/ Build/arm64/AppleSword.app/
           
-          # Strip to x86_64
+          # Thin main executable
           lipo -thin x86_64 Build/Universal/AppleSword.app/Contents/MacOS/AppleSword -output Build/x86_64/AppleSword.app/Contents/MacOS/AppleSword
-          
-          # Strip to arm64
           lipo -thin arm64 Build/Universal/AppleSword.app/Contents/MacOS/AppleSword -output Build/arm64/AppleSword.app/Contents/MacOS/AppleSword
+          
+          # Thin Safari Extension
+          lipo -thin x86_64 "Build/Universal/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension" -output "Build/x86_64/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension"
+          lipo -thin arm64 "Build/Universal/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension" -output "Build/arm64/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension"
+
+          # Re-sign thinned apps
+          codesign --force --deep --sign - Build/x86_64/AppleSword.app
+          codesign --force --deep --sign - Build/arm64/AppleSword.app
           
           echo "Verifying Architectures:"
           file Build/Universal/AppleSword.app/Contents/MacOS/AppleSword
@@ -122,9 +130,9 @@ jobs:
       - name: Extract Release Notes
         id: extract_release_notes
         run: |
-          # Extract the content between the first two second-level headers (##)
-          # This assumes the latest version is always at the top under a ## header
-          RELEASE_NOTES=$(sed -n '/^## \[[0-9].*\]/,/^## \[[0-9].*\]/p' CHANGELOG.md | sed '1d;$d')
+          # Extract the content of the latest version from CHANGELOG.md
+          # This skips the first header and stops before the next header
+          RELEASE_NOTES=$(awk '/^## \[/{if (count++) exit; next} count' CHANGELOG.md)
           
           # Handle multi-line output for GitHub Actions environment variables
           echo "notes<<EOF" >> $GITHUB_OUTPUT

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8.1] - 2026-01-29
+
+### Fixed
+- **Liquid Glass Design**: Refined the settings interface with proper corner radius and transparency to match Liquid Glass standards.
+- **CI/CD Build**: Fixed an issue where system transparency effects were missing in builds distributed via GitHub Actions by adding Ad-hoc signing.
+- **Safari Extension**: Fixed architecture thinning for the Safari Extension in the release workflow.
+- **Release Notes**: Improved the automatic extraction of changelog notes in the release workflow for better accuracy.
+
 ## [0.8] - 2026-01-29
 
 ### Added

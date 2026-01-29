@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ notification: Notification) {
