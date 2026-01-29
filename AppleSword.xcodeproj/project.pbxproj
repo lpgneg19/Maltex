@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		6E9EC839E284D7E031D41B54 /* Aria2Kit in Frameworks */ = {isa = PBXBuildFile; productRef = 28B00BBE35FA9506D47C9978 /* Aria2Kit */; };
 		721A411945B22E914F8681DA /* aria2.conf in Resources */ = {isa = PBXBuildFile; fileRef = B40912E044D39634398B6BEA /* aria2.conf */; };
 		7803C569732BD219FD500769 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21CB08553892309398491BC /* TaskListView.swift */; };
+		78C8FF2BFEA905C5BF426B97 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B65B0947C69E3B1AF608BD8 /* HistoryStore.swift */; };
 		7F327D588E44077817354D54 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B6936E06D217C3F0FF55DBAC /* manifest.json */; };
 		8B2E8E9ED448720D4B63025D /* TorrentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C933013D71C1B46580BB8D /* TorrentConfirmView.swift */; };
 		8D22593B876EAE4EE72E8112 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B1BF41CE6475A36518450 /* TaskDetailView.swift */; };
@@ -31,7 +32,6 @@
 		D47228F3453F0FA1CEA2B125 /* AppleSwordApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0201F73DB1B50276002B8B30 /* AppleSwordApp.swift */; };
 		D56E4FA386FDE78E48638FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABC6FED8868CBFDD0F13A5D /* Assets.xcassets */; };
 		DBD7B078CEAE7BEF3166F11F /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6740F166044F6BBE1C815B /* AddTaskView.swift */; };
-		DEADBEEF0000000000000002 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADBEEF0000000000000001 /* HistoryStore.swift */; };
 		EBAA04FD6B7DFF3B76EDD23C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E31963515A3EE5B1FD1AABB /* MainView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,15 +73,15 @@
 		48D3E494120ECBF5622EE724 /* TaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStore.swift; sourceTree = "<group>"; };
 		4AD48F7DED605963F5F07478 /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		4B804D36471D70F07E736392 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
-		78BC63C8799340B67CF13116 /* aria2c */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = aria2c; sourceTree = "<group>"; };
+		78BC63C8799340B67CF13116 /* aria2c */ = {isa = PBXFileReference; path = aria2c; sourceTree = "<group>"; };
 		7E838F28DF194A191B0D9246 /* EngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineManager.swift; sourceTree = "<group>"; };
+		8B65B0947C69E3B1AF608BD8 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
 		90D9ADF44E5054293C6BBAB1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AA9B1BF41CE6475A36518450 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 		AF6740F166044F6BBE1C815B /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
-		B40912E044D39634398B6BEA /* aria2.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = aria2.conf; sourceTree = "<group>"; };
+		B40912E044D39634398B6BEA /* aria2.conf */ = {isa = PBXFileReference; path = aria2.conf; sourceTree = "<group>"; };
 		B6936E06D217C3F0FF55DBAC /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		BB6CD6FB63DB532A483B6194 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
-		DEADBEEF0000000000000001 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
 		E502A8DEF45EEB2A114D6889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E6A7A20B0317E184B60FBCC8 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		ED10B4091AA87DB306834EE8 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -189,8 +189,8 @@
 		CE74F38D2977880D63D83C2B /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				8B65B0947C69E3B1AF608BD8 /* HistoryStore.swift */,
 				BB6CD6FB63DB532A483B6194 /* SettingsStore.swift */,
-				DEADBEEF0000000000000001 /* HistoryStore.swift */,
 				48D3E494120ECBF5622EE724 /* TaskStore.swift */,
 			);
 			path = Store;
@@ -283,10 +283,6 @@
 						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
-					62B35491AACC835D073E3C9D = {
-						DevelopmentTeam = "";
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 8078269A91E4EE4002ADDA8D /* Build configuration list for PBXProject "AppleSword" */;
@@ -305,6 +301,7 @@
 				97D8F92314BEBA4528C46BF9 /* XCRemoteSwiftPackageReference "AnyCodable" */,
 				BA70C4BB5C0E8A960A5E947C /* XCRemoteSwiftPackageReference "Aria2Kit" */,
 			);
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -356,9 +353,9 @@
 				66310D98BBAA5A34EF4A70AA /* DownloadTask.swift in Sources */,
 				AD5CFBBF0A386824E686E1A3 /* EngineManager.swift in Sources */,
 				1B94D1C06A4E5E3B06546E73 /* Formatters.swift in Sources */,
+				78C8FF2BFEA905C5BF426B97 /* HistoryStore.swift in Sources */,
 				EBAA04FD6B7DFF3B76EDD23C /* MainView.swift in Sources */,
 				140D6D3948E6A4EACEC16A61 /* MenuBarExtra.swift in Sources */,
-				DEADBEEF0000000000000002 /* HistoryStore.swift in Sources */,
 				B097FFD1797D37E55B286584 /* SettingsStore.swift in Sources */,
 				C36C40FF426E41FF9E320593 /* SettingsView.swift in Sources */,
 				8D22593B876EAE4EE72E8112 /* TaskDetailView.swift in Sources */,
@@ -388,14 +385,12 @@
 				CURRENT_PROJECT_VERSION = 407;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = AppleSword/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.6;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native;
 				SDKROOT = macosx;
@@ -406,23 +401,16 @@
 		26339B42BB15557715361F99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 407;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = AppleSwordExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 0.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native.extension;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native.AppleSwordExtension;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -484,24 +472,16 @@
 		4DD5A7D1CE73B5252ECF2060 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 407;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = NO;
-				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = AppleSwordExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 0.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native.extension;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native.AppleSwordExtension;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -577,12 +557,11 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AppleSword/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.6;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native;
 				SDKROOT = macosx;
@@ -636,7 +615,7 @@
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.8.1;
+				minimumVersion = 5.11.0;
 			};
 		};
 		BA70C4BB5C0E8A960A5E947C /* XCRemoteSwiftPackageReference "Aria2Kit" */ = {

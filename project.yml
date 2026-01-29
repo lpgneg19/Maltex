@@ -13,7 +13,7 @@ packages:
     from: 0.6.7
   Alamofire:
     url: https://github.com/Alamofire/Alamofire
-    from: 5.8.1
+    from: 5.11.0
 
 targets:
   AppleSword:
