@@ -27,6 +27,9 @@ jobs:
         with:
           xcode-version: 'latest-stable'
 
+      - name: Check Xcode Version
+        run: xcodebuild -version
+
       - name: Generate Project
         run: xcodegen
 
@@ -49,12 +52,12 @@ jobs:
             MACOSX_DEPLOYMENT_TARGET=15.0 \
             SWIFT_STRICT_CONCURRENCY=minimal \
             COMPILER_INDEX_STORE_ENABLE=NO \
-            BUILD_DIR=Build
+            -skipPackageUpdates
 
       - name: Prepare Universal App
         run: |
           mkdir -p Build/Universal
-          cp -R Build/Release/AppleSword.app Build/Universal/
+          cp -R ./DerivedData/Build/Products/Release/AppleSword.app Build/Universal/
           # Ad-hoc sign the app with Hardened Runtime options to ensure system features work correctly
           codesign --force --deep --sign - --options=runtime Build/Universal/AppleSword.app
 

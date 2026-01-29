@@ -7,13 +7,13 @@ options:
 packages:
   Aria2Kit:
     url: https://github.com/baptistecdr/Aria2Kit
-    from: 1.0.0
+    version: 1.0.4
   AnyCodable:
     url: https://github.com/Flight-School/AnyCodable
-    from: 0.6.7
+    version: 0.6.7
   Alamofire:
     url: https://github.com/Alamofire/Alamofire
-    from: 5.11.0
+    version: 5.11.0
 
 targets:
   AppleSword:
@@ -62,8 +62,5 @@ targets:
         ENABLE_HARDENED_RUNTIME: YES
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: ""
-    dependencies:
-      - package: Aria2Kit
-      - package: AnyCodable
-      - package: Alamofire
+    dependencies: []
     
