@@ -39,9 +39,9 @@ jobs:
             -scheme AppleSword \
             -destination "platform=macOS" \
             -configuration Release \
-            CODE_SIGN_IDENTITY="-" \
-            CODE_SIGNING_REQUIRED=YES \
-            CODE_SIGNING_ALLOWED=YES \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
             ONLY_ACTIVE_ARCH=NO \
             MACOSX_DEPLOYMENT_TARGET=15.0 \
             SWIFT_STRICT_CONCURRENCY=minimal \
@@ -51,8 +51,8 @@ jobs:
         run: |
           mkdir -p Build/Universal
           cp -R Build/Release/AppleSword.app Build/Universal/
-          # Ad-hoc sign the app to ensure system features like vibrancy work correctly
-          codesign --force --deep --sign - Build/Universal/AppleSword.app
+          # Ad-hoc sign the app with Hardened Runtime options to ensure system features work correctly
+          codesign --force --deep --sign - --options=runtime Build/Universal/AppleSword.app
 
       - name: Split Architectures (x86_64 & arm64)
         run: |
@@ -71,9 +71,9 @@ jobs:
           lipo -thin x86_64 "Build/Universal/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension" -output "Build/x86_64/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension"
           lipo -thin arm64 "Build/Universal/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension" -output "Build/arm64/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension"
 
-          # Re-sign thinned apps
-          codesign --force --deep --sign - Build/x86_64/AppleSword.app
-          codesign --force --deep --sign - Build/arm64/AppleSword.app
+          # Re-sign thinned apps deeply with runtime options
+          codesign --force --deep --sign - --options=runtime Build/x86_64/AppleSword.app
+          codesign --force --deep --sign - --options=runtime Build/arm64/AppleSword.app
           
           echo "Verifying Architectures:"
           file Build/Universal/AppleSword.app/Contents/MacOS/AppleSword
