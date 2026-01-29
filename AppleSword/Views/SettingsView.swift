@@ -33,11 +33,14 @@ struct SettingsView: View {
 }
 
 struct AlignedFormRow<Content: View>: View {
-    let label: String
+    let label: LocalizedStringKey
     let content: Content
-    let description: String?
+    let description: LocalizedStringKey?
 
-    init(_ label: String, description: String? = nil, @ViewBuilder content: () -> Content) {
+    init(
+        _ label: LocalizedStringKey, description: LocalizedStringKey? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
         self.label = label
         self.description = description
         self.content = content()
@@ -63,10 +66,10 @@ struct AlignedFormRow<Content: View>: View {
 }
 
 struct SettingsSection<Content: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     let content: Content
 
-    init(_ title: String, @ViewBuilder content: () -> Content) {
+    init(_ title: LocalizedStringKey, @ViewBuilder content: () -> Content) {
         self.title = title
         self.content = content()
     }

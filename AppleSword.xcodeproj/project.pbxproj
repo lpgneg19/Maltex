@@ -25,6 +25,7 @@
 		A70AB08B5B9CA55FB2CABEB5 /* TaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D3E494120ECBF5622EE724 /* TaskStore.swift */; };
 		AD5CFBBF0A386824E686E1A3 /* EngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E838F28DF194A191B0D9246 /* EngineManager.swift */; };
 		AE147784BA63D3CF42F4BF76 /* aria2c in Resources */ = {isa = PBXBuildFile; fileRef = 78BC63C8799340B67CF13116 /* aria2c */; };
+		DEADBEEF0000000000000002 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADBEEF0000000000000001 /* HistoryStore.swift */; };
 		B097FFD1797D37E55B286584 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CD6FB63DB532A483B6194 /* SettingsStore.swift */; };
 		B917196FDF6D88E20189A8E8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 277F78238BF09F009C9F8D3D /* Localizable.xcstrings */; };
 		C36C40FF426E41FF9E320593 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D9ADF44E5054293C6BBAB1 /* SettingsView.swift */; };
@@ -79,6 +80,7 @@
 		AF6740F166044F6BBE1C815B /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		B40912E044D39634398B6BEA /* aria2.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = aria2.conf; sourceTree = "<group>"; };
 		B6936E06D217C3F0FF55DBAC /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		DEADBEEF0000000000000001 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
 		BB6CD6FB63DB532A483B6194 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		E502A8DEF45EEB2A114D6889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E6A7A20B0317E184B60FBCC8 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6CD6FB63DB532A483B6194 /* SettingsStore.swift */,
+				DEADBEEF0000000000000001 /* HistoryStore.swift */,
 				48D3E494120ECBF5622EE724 /* TaskStore.swift */,
 			);
 			path = Store;
@@ -355,6 +358,7 @@
 				1B94D1C06A4E5E3B06546E73 /* Formatters.swift in Sources */,
 				EBAA04FD6B7DFF3B76EDD23C /* MainView.swift in Sources */,
 				140D6D3948E6A4EACEC16A61 /* MenuBarExtra.swift in Sources */,
+				DEADBEEF0000000000000002 /* HistoryStore.swift in Sources */,
 				B097FFD1797D37E55B286584 /* SettingsStore.swift in Sources */,
 				C36C40FF426E41FF9E320593 /* SettingsView.swift in Sources */,
 				8D22593B876EAE4EE72E8112 /* TaskDetailView.swift in Sources */,
@@ -384,6 +388,7 @@
 				CURRENT_PROJECT_VERSION = 405;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = AppleSword/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -391,7 +396,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 6.0;
@@ -414,7 +419,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native.extension;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 6.2;
@@ -484,6 +489,7 @@
 				CURRENT_PROJECT_VERSION = 405;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = AppleSwordExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -492,7 +498,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native.extension;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 6.2;
@@ -577,7 +583,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.applesword.native;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 6.0;

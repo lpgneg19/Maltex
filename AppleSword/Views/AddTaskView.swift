@@ -34,7 +34,8 @@ struct AddTaskView: View {
             HStack {
                 Button(action: selectTorrentFile) {
                     Label(
-                        selectedTorrentPath == nil ? "选择种子文件..." : "更改种子文件",
+                        selectedTorrentPath == nil
+                            ? String(localized: "选择种子文件...") : String(localized: "更改种子文件"),
                         systemImage: "doc.badge.plus")
                 }
                 .buttonStyle(.link)

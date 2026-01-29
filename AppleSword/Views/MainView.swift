@@ -11,24 +11,24 @@ struct MainView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $selection) {
-                Section(LocalizedStringKey("下载状态")) {
+                Section("下载状态") {
                     NavigationLink(value: "all") {
-                        Label(LocalizedStringKey("所有任务"), systemImage: "tray.2")
+                        Label("所有任务", systemImage: "tray.2")
                     }
                     NavigationLink(value: "downloading") {
-                        Label(LocalizedStringKey("正在下载"), systemImage: "arrow.down.circle")
+                        Label("正在下载", systemImage: "arrow.down.circle")
                     }
                     NavigationLink(value: "waiting") {
-                        Label(LocalizedStringKey("等待下载"), systemImage: "clock")
+                        Label("等待下载", systemImage: "clock")
                     }
                     NavigationLink(value: "paused") {
-                        Label(LocalizedStringKey("已暂停"), systemImage: "pause.circle")
+                        Label("已暂停", systemImage: "pause.circle")
                     }
                     NavigationLink(value: "stopped") {
-                        Label(LocalizedStringKey("已停止"), systemImage: "stop.circle")
+                        Label("已停止", systemImage: "stop.circle")
                     }
                     NavigationLink(value: "completed") {
-                        Label(LocalizedStringKey("已完成"), systemImage: "checkmark.circle")
+                        Label("已完成", systemImage: "checkmark.circle")
                     }
                 }
             }
@@ -43,7 +43,7 @@ struct MainView: View {
                     )
                 } else {
                     ContentUnavailableView(
-                        LocalizedStringKey("请选择一个分类"), systemImage: "sidebar.left")
+                        "请选择一个分类", systemImage: "sidebar.left")
                 }
 
                 // Bottom-up Task Details Popup
@@ -144,7 +144,7 @@ struct MainView: View {
                     ProgressView()
                         .controlSize(.small)
                         .padding(.trailing, 4)
-                    Text(LocalizedStringKey("正在连接引擎..."))
+                    Text("正在连接引擎...")
                     Spacer()
                 }
                 .padding(8)

@@ -2,9 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.7] - 2026-01-29
+## [0.7.1] - 2026-01-29
 
 ### Added
+- **Localization**: Added comprehensive Chinese localization support across the application, adhering to standard practices.
 - **Download History**: Implemented local history persistence (`HistoryStore`). Completed or removed tasks are now archived and can be viewed even after restarting the app.
 - **Torrent Preview**: Enhanced the torrent confirmation dialog with a file list preview. Users can now:
     - View individual file sizes.

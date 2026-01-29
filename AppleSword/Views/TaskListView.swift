@@ -53,7 +53,8 @@ struct TaskListView: View {
                                     }
                                 } label: {
                                     Label(
-                                        task.status == .active ? "暂停" : "开始",
+                                        task.status == .active
+                                            ? String(localized: "暂停") : String(localized: "开始"),
                                         systemImage: task.status == .active
                                             ? "pause.fill" : "play.fill")
                                 }
@@ -92,7 +93,7 @@ struct TaskListView: View {
                         selectedTaskGids.isSuperset(of: filteredGids) && !filteredGids.isEmpty
 
                     Label(
-                        isAllSelected ? "取消全选" : "全选",
+                        isAllSelected ? String(localized: "取消全选") : String(localized: "全选"),
                         systemImage: isAllSelected ? "checkmark.square.fill" : "checkmark.square"
                     )
                 }
@@ -152,7 +153,7 @@ struct TaskRow: View {
                 Text(
                     task.bittorrent?.info?.name ?? task.files.first?.path.components(
                         separatedBy: "/"
-                    ).last ?? "未知文件"
+                    ).last ?? String(localized: "未知文件")
                 )
                 .font(.headline)
                 .lineLimit(1)

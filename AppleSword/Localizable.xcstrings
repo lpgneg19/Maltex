@@ -61,8 +61,19 @@
     "引擎错误: %@" : {
 
     },
-    "文件列表 (%@)" : {
+    "总大小: %@" : {
 
+    },
+    "文件列表 (%@)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Files (%@)"
+          }
+        }
+      }
     },
     "新建下载任务" : {
 
@@ -141,6 +152,9 @@
           }
         }
       }
+    },
+    "请至少选择一个文件" : {
+
     },
     "请选择一个分类" : {
       "extractionState" : "manual",

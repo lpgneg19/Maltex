@@ -110,7 +110,10 @@ struct TorrentConfirmView: View {
                                 selectedFileIndices = Set(task.files.map { $0.index })
                             }
                         }) {
-                            Text(selectedFileIndices.count == task.files.count ? "取消全选" : "全选")
+                            let title =
+                                selectedFileIndices.count == task.files.count
+                                ? String(localized: "取消全选") : String(localized: "全选")
+                            Text(title)
                                 .font(.caption)
                         }
                         .buttonStyle(.plain)
@@ -119,66 +122,7 @@ struct TorrentConfirmView: View {
                     .padding(.horizontal)
 
                     // Files List
-                    VStack(spacing: 0) {
-                        ForEach(sortedFiles, id: \.index) { file in
-                            HStack {
-                                Toggle(
-                                    "",
-                                    isOn: Binding(
-                                        get: { selectedFileIndices.contains(file.index) },
-                                        set: { isSelected in
-                                            if isSelected {
-                                                selectedFileIndices.insert(file.index)
-                                            } else {
-                                                selectedFileIndices.remove(file.index)
-                                            }
-                                        }
-                                    )
-                                )
-                                .labelsHidden()
-
-                                Image(systemName: "doc")
-                                    .foregroundColor(.secondary)
-
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(file.path.components(separatedBy: "/").last ?? file.path)
-                                        .font(.system(size: 13))
-                                        .lineLimit(1)
-                                    // Show directory hint if in subdirectory
-                                    if file.path.contains("/") {
-                                        Text(file.path)
-                                            .font(.caption2)
-                                            .foregroundColor(.tertiaryLabel)
-                                            .lineLimit(1)
-                                            .truncationMode(.middle)
-                                    }
-                                }
-
-                                Spacer()
-                                Text(ByteCountFormatterUtil.string(fromByteCount: file.length))
-                                    .font(.system(.caption, design: .monospaced))
-                                    .foregroundColor(.secondary)
-                            }
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 12)
-                            .contentShape(Rectangle())  // Make entire row clickable for toggle? Maybe not standard.
-                            .onTapGesture {
-                                // Optional: Tap row to toggle
-                                if selectedFileIndices.contains(file.index) {
-                                    selectedFileIndices.remove(file.index)
-                                } else {
-                                    selectedFileIndices.insert(file.index)
-                                }
-                            }
-
-                            if file.index != sortedFiles.last?.index {
-                                Divider().padding(.leading, 40)
-                            }
-                        }
-                    }
-                    .background(Color.secondary.opacity(0.05))
-                    .cornerRadius(8)
-                    .padding(.horizontal)
+                    FileListView(files: sortedFiles, selectedFileIndices: $selectedFileIndices)
                 }
                 .padding(.vertical)
             }
@@ -202,23 +146,10 @@ struct TorrentConfirmView: View {
                 }
 
                 Button("立即下载") {
-                    // Pass selected indices via options?
-                    // Currently onConfirm only returns path.
-                    // We need to support selected indexes.
-                    // But standard Aria2 addTorrent allows --select-file=1,2,4...
-                    // The onConfirm callback signature is (String) -> Void.
-                    // We might need to modify it or just trust that TaskStore handles it?
-                    // TaskStore.resumeTask takes options.
-                    // We need to modify MainView usage or change onConfirm to return options.
-                    // But resizing this signature is complex via replace.
-                    // Let's modify MainView to handle it? OR:
-                    // We can change `onConfirm` signature in a separate edit if needed, OR:
-                    // We can just rely on setting the options in TaskStore inside MainView.
-                    // But wait, TaskStore calls resumeTask.
-                    // Issue: MainView creates TorrentConfirmView. MainView passes closure.
-                    // Closure in MainView calls resumeTask.
-                    // So we need to pass selected indices out.
-                    onConfirm(downloadPath)
+                    if !onConfirmCalled {
+                        onConfirmCalled = true
+                        onConfirm(downloadPath, selectedFileIndices)
+                    }
                 }
                 .buttonStyle(.borderedProminent)
                 .keyboardShortcut(.defaultAction)
@@ -231,6 +162,83 @@ struct TorrentConfirmView: View {
         .onAppear {
             // Init selection
             selectedFileIndices = Set(task.files.map { $0.index })
+        }
+    }
+
+    @State private var onConfirmCalled = false
+}
+
+struct FileListView: View {
+    let files: [DownloadFile]
+    @Binding var selectedFileIndices: Set<String>
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ForEach(files, id: \.index) { file in
+                FileRowView(file: file, selectedFileIndices: $selectedFileIndices)
+                if file.index != files.last?.index {
+                    Divider().padding(.leading, 40)
+                }
+            }
+        }
+        .background(Color.secondary.opacity(0.05))
+        .cornerRadius(8)
+        .padding(.horizontal)
+    }
+}
+
+struct FileRowView: View {
+    let file: DownloadFile
+    @Binding var selectedFileIndices: Set<String>
+
+    var body: some View {
+        HStack {
+            Toggle(
+                "",
+                isOn: Binding(
+                    get: { selectedFileIndices.contains(file.index) },
+                    set: { isSelected in
+                        if isSelected {
+                            selectedFileIndices.insert(file.index)
+                        } else {
+                            selectedFileIndices.remove(file.index)
+                        }
+                    }
+                )
+            )
+            .labelsHidden()
+
+            Image(systemName: "doc")
+                .foregroundColor(.secondary)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(file.path.components(separatedBy: "/").last ?? file.path)
+                    .font(.system(size: 13))
+                    .lineLimit(1)
+                // Show directory hint if in subdirectory
+                if file.path.contains("/") {
+                    Text(file.path)
+                        .font(.caption2)
+                        .foregroundColor(.secondary.opacity(0.6))
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                }
+            }
+
+            Spacer()
+            Text(ByteCountFormatterUtil.string(fromByteCount: file.length))
+                .font(.system(.caption, design: .monospaced))
+                .foregroundColor(.secondary)
+        }
+        .padding(.vertical, 8)
+        .padding(.horizontal, 12)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            if selectedFileIndices.contains(file.index) {
+                selectedFileIndices.remove(file.index)
+            } else {
+                selectedFileIndices.insert(file.index)
+            }
         }
     }
 }
