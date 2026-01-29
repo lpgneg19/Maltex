@@ -21,6 +21,14 @@ struct AppleSwordApp: App {
                 .onOpenURL { url in
                     handleIncomingURL(url)
                 }
+                .onWindow { window in
+                    guard let window = window else { return }
+                    window.titlebarAppearsTransparent = true
+                    window.styleMask.insert(NSWindow.StyleMask.fullSizeContentView)
+                    window.isOpaque = false
+                    window.backgroundColor = .clear
+                    // Ensure the toolbar/titlebar buttons are still usable but blend in
+                }
         }
         .windowToolbarStyle(.unified)
         .commands {
@@ -58,5 +66,25 @@ struct AppleSwordApp: App {
         if !downloadURL.isEmpty {
             taskStore.addUri([downloadURL])
         }
+    }
+}
+
+struct WindowAccessor: NSViewRepresentable {
+    let callback: (NSWindow?) -> Void
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        DispatchQueue.main.async { [weak view] in
+            self.callback(view?.window)
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {}
+}
+
+extension View {
+    func onWindow(callback: @escaping (NSWindow?) -> Void) -> some View {
+        background(WindowAccessor(callback: callback))
     }
 }

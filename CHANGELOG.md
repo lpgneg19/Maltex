@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8] - 2026-01-29
+
+### Added
+- **Liquid Glass Design**: Redesigned the entire application interface with a modern "Liquid Glass" (vibrancy/blur) aesthetic. This includes the sidebar, main content area, task details, and settings window.
+- **Native Window Integration**: Enabled full-size content view and transparent title bars for a more integrated macOS experience.
+
+### Changed
+- **Engine Connection UX**: Removed the persistent "Connecting..." message during startup. The app now remains silent unless an engine error occurs.
+- **Improved Error Handling**: Engine errors are now presented via native macOS alerts with retry options, reducing UI clutter.
+
 ## [0.7.1] - 2026-01-29
 
 ### Added

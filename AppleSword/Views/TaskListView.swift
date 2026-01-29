@@ -76,6 +76,7 @@ struct TaskListView: View {
                     }
                 }
                 .listStyle(.inset)
+                .scrollContentBackground(.hidden)
             }
         }
         .toolbar {

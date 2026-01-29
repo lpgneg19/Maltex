@@ -1,5 +1,6 @@
 import ServiceManagement
 import SwiftUI
+import AppKit
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
@@ -26,9 +27,9 @@ struct SettingsView: View {
                     Label("BT 设置", systemImage: "antenna.radiowaves.left.and.right")
                 }
         }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(NSColor.windowBackgroundColor))
+        .padding(20)
+        .frame(minWidth: 600, minHeight: 450)
+        .background(VisualEffectView(material: .hudWindow, blendingMode: .behindWindow).ignoresSafeArea())
     }
 }
 
@@ -85,8 +86,12 @@ struct SettingsSection<Content: View>: View {
                 content
             }
             .padding()
-            .background(Color.secondary.opacity(0.05))
-            .cornerRadius(12)
+            .background(Color.white.opacity(0.05))
+            .cornerRadius(15)
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
+            )
         }
         .padding(.bottom, 24)
     }

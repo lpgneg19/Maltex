@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 struct MainView: View {
     @State private var selection: String? = "downloading"
@@ -33,6 +34,7 @@ struct MainView: View {
                 }
             }
             .listStyle(.sidebar)
+            .scrollContentBackground(.hidden)
         } detail: {
             ZStack(alignment: .bottom) {
                 if let selection = selection {
@@ -67,6 +69,7 @@ struct MainView: View {
                 }
             }
         }
+        .background(VisualEffectView(material: .hudWindow, blendingMode: .behindWindow).ignoresSafeArea())
         .sheet(isPresented: $isShowingAddTask) {
             AddTaskView()
                 .environmentObject(taskStore)
@@ -124,31 +127,20 @@ struct MainView: View {
             }
         }
         .frame(minWidth: 900, minHeight: 600)
-        .overlay(alignment: .bottom) {
+        .alert("引擎错误", isPresented: Binding(
+            get: { taskStore.lastError != nil },
+            set: { if !$0 { taskStore.lastError = nil } }
+        )) {
+            Button("重试") {
+                taskStore.lastError = nil
+                EngineManager.shared.restart()
+            }
+            Button("取消", role: .cancel) {
+                taskStore.lastError = nil
+            }
+        } message: {
             if let error = taskStore.lastError {
-                HStack {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                    Text("引擎错误: \(error)")
-                    Spacer()
-                    Button("重试") {
-                        taskStore.lastError = nil
-                        EngineManager.shared.restart()
-                    }
-                    .buttonStyle(.link)
-                }
-                .padding(8)
-                .background(Color.red.opacity(0.8))
-                .foregroundColor(.white)
-            } else if !taskStore.isConnected {
-                HStack {
-                    ProgressView()
-                        .controlSize(.small)
-                        .padding(.trailing, 4)
-                    Text("正在连接引擎...")
-                    Spacer()
-                }
-                .padding(8)
-                .background(Color.secondary.opacity(0.1))
+                Text(error)
             }
         }
     }
@@ -156,4 +148,22 @@ struct MainView: View {
 
 struct IdentifiableString: Identifiable {
     let id: String
+}
+
+struct VisualEffectView: NSViewRepresentable {
+    let material: NSVisualEffectView.Material
+    let blendingMode: NSVisualEffectView.BlendingMode
+
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        let visualEffectView = NSVisualEffectView()
+        visualEffectView.material = material
+        visualEffectView.blendingMode = blendingMode
+        visualEffectView.state = .active
+        return visualEffectView
+    }
+
+    func updateNSView(_ visualEffectView: NSVisualEffectView, context: Context) {
+        visualEffectView.material = material
+        visualEffectView.blendingMode = blendingMode
+    }
 }
