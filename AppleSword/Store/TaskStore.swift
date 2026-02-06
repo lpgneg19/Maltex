@@ -133,10 +133,10 @@ class TaskStore: ObservableObject {
 
     private func mergeTasks(_ newTasks: [DownloadTask]) {
         let settings = SettingsStore()
-        var currentTasksMap = self.tasks.reduce(into: [String: DownloadTask]()) { $0[$1.gid] = $1 }
+        let oldTasksMap = self.tasks.reduce(into: [String: DownloadTask]()) { $0[$1.gid] = $1 }
 
         for task in newTasks {
-            if let oldTask = currentTasksMap[task.gid] {
+            if let oldTask = oldTasksMap[task.gid] {
                 // Status transition: active -> complete
                 if oldTask.status != .complete && task.status == .complete {
                     if settings.notificationEnabled {
@@ -146,24 +146,20 @@ class TaskStore: ObservableObject {
                     historyStore.add(task)
                 }
             }
-            currentTasksMap[task.gid] = task
         }
 
-        // Merge with history (avoiding duplicates from active engine tasks)
-        // If a task is in engine, use engine version. If not, use history version.
-        // But history version is usually "removed" or "complete".
-        // Use a set of GIDs present in engine
+        // Merge logic:
+        // 1. Start with engine tasks
+        // 2. Add history tasks that are NOT in engine
         let engineGids = Set(newTasks.map { $0.gid })
+        let historyTasksNotInEngine = historyStore.archivedTasks.filter {
+            !engineGids.contains($0.gid)
+        }
 
-        // Add history tasks that are NOT in engine
-        let historyTasks = historyStore.archivedTasks.filter { !engineGids.contains($0.gid) }
-
-        var finalTasks = Array(currentTasksMap.values)
-        finalTasks.append(contentsOf: historyTasks)
+        var finalTasks = newTasks
+        finalTasks.append(contentsOf: historyTasksNotInEngine)
 
         self.tasks = finalTasks.sorted {
-            // Sort by creation or completion? usually GID is hex, unrelated to time.
-            // Ideally we need a timestamp. For now, rely on GID or just keeping them together.
             $0.gid > $1.gid
         }
     }

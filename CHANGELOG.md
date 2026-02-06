@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8.2] - 2026-02-06
+
+### Fixed
+- **Download History**: Fixed an issue where completed tasks could appear as duplicate entries in the history.
+
 ## [0.8.1.14] - 2026-01-29
 
 ### Fixed
