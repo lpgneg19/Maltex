@@ -1,3 +1,4 @@
 *.ips
 .build/
 *.xcodeproj
+.vscode/
