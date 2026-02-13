@@ -1,6 +1,6 @@
-name: AppleSword
+name: Maltex
 options:
-  bundleIdPrefix: app.applesword.native
+  bundleIdPrefix: app.maltex.native
   indentWidth: 4
   tabWidth: 4
 
@@ -16,12 +16,12 @@ packages:
     version: 5.11.0
 
 targets:
-  AppleSword:
+  Maltex:
     type: application
     platform: macOS
     deploymentTarget: "14.0"
     sources:
-      - path: AppleSword
+      - path: Maltex
       - path: extra/darwin/arm64/engine/aria2c
         type: file
         buildPhase: resources
@@ -30,12 +30,12 @@ targets:
         buildPhase: resources
     settings:
       base:
-        INFOPLIST_FILE: AppleSword/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: app.applesword.native
+        INFOPLIST_FILE: Maltex/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: app.maltex.native
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_VERSION: 6.2
-        MARKETING_VERSION: 0.8.2
-        CURRENT_PROJECT_VERSION: 408
+        MARKETING_VERSION: 0.8.3
+        CURRENT_PROJECT_VERSION: 830
         ENABLE_HARDENED_RUNTIME: YES
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: ""
@@ -43,22 +43,22 @@ targets:
       - package: Aria2Kit
       - package: AnyCodable
       - package: Alamofire
-      - target: AppleSword Extension
+      - target: Maltex Extension
 
-  AppleSword Extension:
+  Maltex Extension:
     type: app-extension
     platform: macOS
     deploymentTarget: "14.0"
     sources:
-      - path: AppleSwordExtension
+      - path: MaltexExtension
     settings:
       base:
-        INFOPLIST_FILE: AppleSwordExtension/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: app.applesword.native.extension
+        INFOPLIST_FILE: MaltexExtension/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: app.maltex.native.extension
         GENERATE_INFOPLIST_FILE: NO
         SWIFT_VERSION: 6.2
-        MARKETING_VERSION: 0.8.2
-        CURRENT_PROJECT_VERSION: 408
+        MARKETING_VERSION: 0.8.3
+        CURRENT_PROJECT_VERSION: 830
         ENABLE_HARDENED_RUNTIME: YES
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: ""

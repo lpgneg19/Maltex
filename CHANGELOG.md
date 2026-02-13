@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8.3] - 2026-02-13
+
+### Added
+- **Full Localization**: Completed Simplified Chinese and English localization for all UI elements, including task details, settings, and menu bar.
+- **Dynamic Status**: Implemented localized task status names.
+
+### Improved
+- **UI Strings**: Removed all hardcoded strings and moved them to string catalogs for better maintainability.
+- **Torrent Confirm**: Refined the layout and localized content of the torrent confirmation dialog.
+
 ## [0.8.2] - 2026-02-06
 
 ### Fixed
@@ -63,7 +73,7 @@ All notable changes to this project will be documented in this file.
 - **IPv6 Binding Conflicts**: Added `--disable-ipv6=true` to prevent the engine from failing to bind to ports on certain network configurations.
 
 ### Changed
-- **Data Directory**: Migrated user data and engine logs to `~/Library/Application Support/Motrix` and optimized argument handling for paths with spaces.
-- **Logging Architecture**: Separated application logs (`motrix.log`) from engine logs (`aria2.log`) and added a dedicated `aria2_stderr.log` for capturing runtime errors.
+- **Data Directory**: Migrated user data and engine logs to `~/Library/Application Support/Maltex` and optimized argument handling for paths with spaces.
+- **Logging Architecture**: Separated application logs (`maltex.log`) from engine logs (`aria2.log`) and added a dedicated `aria2_stderr.log` for capturing runtime errors.
 - **RPC Host**: Switched default RPC connection host from `127.0.0.1` to `localhost` to improve compatibility with local loopback interfaces.
 - **Engine Arguments**: Simplified `aria2c` startup flags to increase reliability across different macOS environments.

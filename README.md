@@ -1,12 +1,12 @@
-# AppleSword (Native macOS)
+# Maltex (Native macOS)
 
 <p align="center">
-  <img src="AppleSword/Assets.xcassets/AppIcon.appiconset/icon.png" width="128" height="128" alt="AppleSword Logo">
+  <img src="Maltex/Assets.xcassets/AppIcon.appiconset/icon.png" width="128" height="128" alt="Maltex Logo">
   <br>
   <b>A powerful, native download manager for macOS, built with SwiftUI.</b>
 </p>
 
-AppleSword is a native rewrite of the popular [Motrix](https://motrix.app) download manager, designed specifically for the macOS ecosystem. By leveraging the power of SwiftUI and the robustness of the `aria2` engine, AppleSword delivers a fast, efficient, and deeply integrated download experience.
+Maltex is a native rewrite of the popular [Motrix](https://motrix.app) download manager, designed specifically for the macOS ecosystem. By leveraging the power of SwiftUI and the robustness of the `aria2` engine, Maltex delivers a fast, efficient, and deeply integrated download experience.
 
 [English] | [简体中文](./README-CN.md)
 
@@ -26,7 +26,7 @@ AppleSword is a native rewrite of the popular [Motrix](https://motrix.app) downl
 
 ## 📦 Installation & Development
 
-AppleSword is currently in active development. You can build it from source to try the latest features.
+Maltex is currently in active development. You can build it from source to try the latest features.
 
 ### Prerequisites
 - macOS 14.0+
@@ -36,15 +36,15 @@ AppleSword is currently in active development. You can build it from source to t
 ### Build Instructions
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/agalwood/Motrix.git
-   cd Motrix
+   git clone https://github.com/1pgneg19/Maltex.git
+   cd Maltex
    ```
 2. **Generate the Xcode Project**:
    ```bash
    xcodegen generate
    ```
 3. **Open and Run**:
-   Open `AppleSword.xcodeproj` and run the `AppleSword` target.
+   Open `Maltex.xcodeproj` and run the `Maltex` target.
 
 ## 🛠 Technology Stack
 
@@ -63,11 +63,11 @@ If you encounter engine connection issues:
    ```
 2. **Clear Data**: If configuration files are corrupted, try clearing the app data:
    ```bash
-   rm -rf ~/Library/Application\ Support/AppleSword
+   rm -rf ~/Library/Application\ Support/Maltex
    ```
 3. **Check Logs**:
-   - **App Logs**: `~/Library/Application Support/AppleSword/applesword.log`
-   - **Engine Logs**: `~/Library/Application Support/AppleSword/aria2.log`
+   - **App Logs**: `~/Library/Application Support/Maltex/maltex.log`
+   - **Engine Logs**: `~/Library/Application Support/Maltex/aria2.log`
 
 ## 🤝 Contributing
 
@@ -75,7 +75,7 @@ Contributions, bug reports, and feature requests are welcome! Please check the [
 
 ## 📜 License
 
-AppleSword is released under the [MIT License](./LICENSE).
+Maltex is released under the [MIT License](./LICENSE).
 
 ---
 *Inspired by Motrix. Reborn for macOS.*

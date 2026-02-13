@@ -8,7 +8,7 @@ class EngineManager {
     var userDataPath: URL {
         let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
         let appSupport = paths[0]
-        return appSupport.appendingPathComponent("AppleSword", isDirectory: true)
+        return appSupport.appendingPathComponent("Maltex", isDirectory: true)
     }
 
     var sessionPath: URL {
@@ -24,7 +24,7 @@ class EngineManager {
     }
 
     var appLogPath: URL {
-        userDataPath.appendingPathComponent("applesword.log")
+        userDataPath.appendingPathComponent("maltex.log")
     }
 
     var stderrPath: URL {
@@ -47,7 +47,7 @@ class EngineManager {
         // 2. Locate binary
         let bundleBin = Bundle.main.url(forResource: "aria2c", withExtension: nil)
         let devBin = URL(
-            fileURLWithPath: "/Users/steve/Documents/GitHub/Motrix/extra/darwin/arm64/engine/aria2c"
+            fileURLWithPath: "/Users/steve/Documents/GitHub/Maltex/extra/darwin/arm64/engine/aria2c"
         )
         let binURL = bundleBin ?? devBin
 

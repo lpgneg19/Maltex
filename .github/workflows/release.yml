@@ -34,12 +34,12 @@ jobs:
         run: xcodegen
 
       - name: Resolve Package Dependencies
-        run: xcodebuild -resolvePackageDependencies -scheme AppleSword
+        run: xcodebuild -resolvePackageDependencies -scheme Maltex
 
       - name: Build Universal App
         run: |
           xcodebuild build \
-            -scheme AppleSword \
+            -scheme Maltex \
             -destination "platform=macOS" \
             -configuration Release \
             -derivedDataPath ./DerivedData \
@@ -57,35 +57,35 @@ jobs:
       - name: Prepare Universal App
         run: |
           mkdir -p Build/Universal
-          cp -R ./DerivedData/Build/Products/Release/AppleSword.app Build/Universal/
+          cp -R ./DerivedData/Build/Products/Release/Maltex.app Build/Universal/
           # Ad-hoc sign the app with Hardened Runtime options to ensure system features work correctly
-          codesign --force --deep --sign - --options=runtime Build/Universal/AppleSword.app
+          codesign --force --deep --sign - --options=runtime Build/Universal/Maltex.app
 
       - name: Split Architectures (x86_64 & arm64)
         run: |
-          mkdir -p Build/x86_64/AppleSword.app
-          mkdir -p Build/arm64/AppleSword.app
+          mkdir -p Build/x86_64/Maltex.app
+          mkdir -p Build/arm64/Maltex.app
           
           # Copy Universal app to specific folders
-          cp -R Build/Universal/AppleSword.app/ Build/x86_64/AppleSword.app/
-          cp -R Build/Universal/AppleSword.app/ Build/arm64/AppleSword.app/
+          cp -R Build/Universal/Maltex.app/ Build/x86_64/Maltex.app/
+          cp -R Build/Universal/Maltex.app/ Build/arm64/Maltex.app/
           
           # Thin main executable
-          lipo -thin x86_64 Build/Universal/AppleSword.app/Contents/MacOS/AppleSword -output Build/x86_64/AppleSword.app/Contents/MacOS/AppleSword
-          lipo -thin arm64 Build/Universal/AppleSword.app/Contents/MacOS/AppleSword -output Build/arm64/AppleSword.app/Contents/MacOS/AppleSword
+          lipo -thin x86_64 Build/Universal/Maltex.app/Contents/MacOS/Maltex -output Build/x86_64/Maltex.app/Contents/MacOS/Maltex
+          lipo -thin arm64 Build/Universal/Maltex.app/Contents/MacOS/Maltex -output Build/arm64/Maltex.app/Contents/MacOS/Maltex
           
           # Thin Safari Extension
-          lipo -thin x86_64 "Build/Universal/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension" -output "Build/x86_64/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension"
-          lipo -thin arm64 "Build/Universal/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension" -output "Build/arm64/AppleSword.app/Contents/PlugIns/AppleSword Extension.appex/Contents/MacOS/AppleSword Extension"
+          lipo -thin x86_64 "Build/Universal/Maltex.app/Contents/PlugIns/Maltex Extension.appex/Contents/MacOS/Maltex Extension" -output "Build/x86_64/Maltex.app/Contents/PlugIns/Maltex Extension.appex/Contents/MacOS/Maltex Extension"
+          lipo -thin arm64 "Build/Universal/Maltex.app/Contents/PlugIns/Maltex Extension.appex/Contents/MacOS/Maltex Extension" -output "Build/arm64/Maltex.app/Contents/PlugIns/Maltex Extension.appex/Contents/MacOS/Maltex Extension"
 
           # Re-sign thinned apps deeply with runtime options
-          codesign --force --deep --sign - --options=runtime Build/x86_64/AppleSword.app
-          codesign --force --deep --sign - --options=runtime Build/arm64/AppleSword.app
+          codesign --force --deep --sign - --options=runtime Build/x86_64/Maltex.app
+          codesign --force --deep --sign - --options=runtime Build/arm64/Maltex.app
           
           echo "Verifying Architectures:"
-          file Build/Universal/AppleSword.app/Contents/MacOS/AppleSword
-          file Build/x86_64/AppleSword.app/Contents/MacOS/AppleSword
-          file Build/arm64/AppleSword.app/Contents/MacOS/AppleSword
+          file Build/Universal/Maltex.app/Contents/MacOS/Maltex
+          file Build/x86_64/Maltex.app/Contents/MacOS/Maltex
+          file Build/arm64/Maltex.app/Contents/MacOS/Maltex
 
       - name: Create DMGs
         id: create_dmgs
@@ -103,42 +103,42 @@ jobs:
           
           # Universal
           create-dmg \
-            --volname "AppleSword Installer" \
-            --volicon "AppleSword/Assets.xcassets/AppIcon.appiconset/icon.png" \
+            --volname "Maltex Installer" \
+            --volicon "Maltex/Assets.xcassets/AppIcon.appiconset/icon.png" \
             --window-pos 200 120 \
             --window-size 800 400 \
             --icon-size 100 \
-            --icon "AppleSword.app" 200 190 \
-            --hide-extension "AppleSword.app" \
+            --icon "Maltex.app" 200 190 \
+            --hide-extension "Maltex.app" \
             --app-drop-link 600 185 \
-            "AppleSword-${VERSION}-Universal.dmg" \
-            "Build/Universal/AppleSword.app"
+            "Maltex-${VERSION}-Universal.dmg" \
+            "Build/Universal/Maltex.app"
 
           # x86_64
           create-dmg \
-            --volname "AppleSword Installer (Intel)" \
-            --volicon "AppleSword/Assets.xcassets/AppIcon.appiconset/icon.png" \
+            --volname "Maltex Installer (Intel)" \
+            --volicon "Maltex/Assets.xcassets/AppIcon.appiconset/icon.png" \
             --window-pos 200 120 \
             --window-size 800 400 \
             --icon-size 100 \
-            --icon "AppleSword.app" 200 190 \
-            --hide-extension "AppleSword.app" \
+            --icon "Maltex.app" 200 190 \
+            --hide-extension "Maltex.app" \
             --app-drop-link 600 185 \
-            "AppleSword-${VERSION}-x86_64.dmg" \
-            "Build/x86_64/AppleSword.app"
+            "Maltex-${VERSION}-x86_64.dmg" \
+            "Build/x86_64/Maltex.app"
 
           # arm64
           create-dmg \
-            --volname "AppleSword Installer (Apple Silicon)" \
-            --volicon "AppleSword/Assets.xcassets/AppIcon.appiconset/icon.png" \
+            --volname "Maltex Installer (Apple Silicon)" \
+            --volicon "Maltex/Assets.xcassets/AppIcon.appiconset/icon.png" \
             --window-pos 200 120 \
             --window-size 800 400 \
             --icon-size 100 \
-            --icon "AppleSword.app" 200 190 \
-            --hide-extension "AppleSword.app" \
+            --icon "Maltex.app" 200 190 \
+            --hide-extension "Maltex.app" \
             --app-drop-link 600 185 \
-            "AppleSword-${VERSION}-arm64.dmg" \
-            "Build/arm64/AppleSword.app"
+            "Maltex-${VERSION}-arm64.dmg" \
+            "Build/arm64/Maltex.app"
 
       - name: Extract Release Notes
         id: extract_release_notes
@@ -163,8 +163,8 @@ jobs:
           draft: ${{ github.event_name == 'workflow_dispatch' }}
           body: ${{ steps.extract_release_notes.outputs.notes }}
           files: |
-            AppleSword-*-Universal.dmg
-            AppleSword-*-x86_64.dmg
-            AppleSword-*-arm64.dmg
+            Maltex-*-Universal.dmg
+            Maltex-*-x86_64.dmg
+            Maltex-*-arm64.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

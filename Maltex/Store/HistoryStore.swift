@@ -8,7 +8,7 @@ class HistoryStore: ObservableObject {
 
     init() {
         let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
-        let appSupport = paths[0].appendingPathComponent("AppleSword", isDirectory: true)
+        let appSupport = paths[0].appendingPathComponent("Maltex", isDirectory: true)
         try? FileManager.default.createDirectory(
             at: appSupport, withIntermediateDirectories: true, attributes: nil)
         self.fileURL = appSupport.appendingPathComponent("history.json")

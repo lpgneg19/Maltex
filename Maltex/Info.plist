@@ -20,34 +20,34 @@
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>AppleSword</string>
+	<string>Maltex</string>
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>app.applesword.native</string>
+	<string>app.maltex.native</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>AppleSword</string>
+	<string>Maltex</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.8</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>app.applesword.native</string>
+			<string>app.maltex.native</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>applesword</string>
+				<string>maltex</string>
 				<string>magnet</string>
 				<string>thunder</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>405</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>13.0</string>
 	<key>NSHighResolutionCapable</key>
