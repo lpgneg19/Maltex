@@ -9,7 +9,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 @main
-struct AppleSwordApp: App {
+struct MaltexApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var taskStore = TaskStore()
     @StateObject private var settingsStore = SettingsStore()
@@ -41,7 +41,7 @@ struct AppleSwordApp: App {
                 .environmentObject(settingsStore)
         }
 
-        AppleSwordMenuBar(taskStore: taskStore)
+        MaltexMenuBar(taskStore: taskStore)
     }
 
     private func handleIncomingURL(_ url: URL) {
@@ -53,8 +53,8 @@ struct AppleSwordApp: App {
             return
         }
 
-        if urlString.hasPrefix("applesword://") {
-            downloadURL = urlString.replacingOccurrences(of: "applesword://", with: "")
+        if urlString.hasPrefix("maltex://") {
+            downloadURL = urlString.replacingOccurrences(of: "maltex://", with: "")
             if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
                 let queryItem = components.queryItems?.first(where: { $0.name == "url" })
             {

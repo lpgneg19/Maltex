@@ -61,7 +61,7 @@ struct TaskDetailView: View {
                             .padding(.horizontal)
 
                         Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: 10) {
-                            DetailGridRow(label: "状态", value: "\(task.status)".capitalized)
+                            DetailGridRow(label: "状态", value: task.status.localizedName)
                             DetailGridRow(
                                 label: "大小",
                                 value: ByteCountFormatterUtil.string(
@@ -91,7 +91,7 @@ struct TaskDetailView: View {
                     // Files section
                     if !task.files.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("文件列表 (\(task.files.count))")
+                            Text(String(localized: "文件列表 (\(task.files.count))"))
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                                 .padding(.horizontal)

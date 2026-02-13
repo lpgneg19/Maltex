@@ -35,7 +35,7 @@ struct TaskListView: View {
         Group {
             if filteredTasks.isEmpty {
                 ContentUnavailableView(
-                    "暂无任务",
+                    String(localized: "暂无任务"),
                     systemImage: "tray",
                     description: Text("点击上方 '+' 按钮或拖入链接开始下载")
                 )
@@ -62,7 +62,7 @@ struct TaskListView: View {
                                 Button {
                                     taskStore.stopTasks(gids: [task.gid])
                                 } label: {
-                                    Label("停止", systemImage: "stop.fill")
+                                    Label(String(localized: "停止"), systemImage: "stop.fill")
                                 }
 
                                 Divider()
@@ -70,7 +70,7 @@ struct TaskListView: View {
                                 Button(role: .destructive) {
                                     taskStore.removeTasks(gids: [task.gid])
                                 } label: {
-                                    Label("删除", systemImage: "trash.fill")
+                                    Label(String(localized: "删除"), systemImage: "trash.fill")
                                 }
                             }
                     }
@@ -98,44 +98,44 @@ struct TaskListView: View {
                         systemImage: isAllSelected ? "checkmark.square.fill" : "checkmark.square"
                     )
                 }
-                .help("全选 / 取消全选")
+                .help(String(localized: "全选 / 取消全选"))
 
                 Button(action: { taskStore.resumeTasks(gids: selectedTaskGids) }) {
-                    Label("开始", systemImage: "play.fill")
+                    Label(String(localized: "开始"), systemImage: "play.fill")
                 }
                 .disabled(selectedTaskGids.isEmpty)
-                .help("开始任务")
+                .help(String(localized: "开始任务"))
 
                 Button(action: { taskStore.pauseTasks(gids: selectedTaskGids) }) {
-                    Label("暂停", systemImage: "pause.fill")
+                    Label(String(localized: "暂停"), systemImage: "pause.fill")
                 }
                 .disabled(selectedTaskGids.isEmpty)
-                .help("暂停任务")
+                .help(String(localized: "暂停任务"))
 
                 Button(action: { taskStore.stopTasks(gids: selectedTaskGids) }) {
-                    Label("停止", systemImage: "stop.fill")
+                    Label(String(localized: "停止"), systemImage: "stop.fill")
                 }
                 .disabled(selectedTaskGids.isEmpty)
-                .help("停止任务")
+                .help(String(localized: "停止任务"))
 
                 Button(action: {
                     taskStore.removeTasks(gids: selectedTaskGids)
                     selectedTaskGids.removeAll()
                 }) {
-                    Label("删除", systemImage: "trash.fill")
+                    Label(String(localized: "删除"), systemImage: "trash.fill")
                 }
                 .disabled(selectedTaskGids.isEmpty)
-                .help("删除任务")
+                .help(String(localized: "删除任务"))
 
                 Button(action: { isShowingAddTask = true }) {
-                    Label("新建任务", systemImage: "plus")
+                    Label(String(localized: "新建任务"), systemImage: "plus")
                 }
-                .help("创建新下载任务")
+                .help(String(localized: "创建新下载任务"))
 
                 Button(action: { taskStore.fetchTasks() }) {
-                    Label("刷新", systemImage: "arrow.clockwise")
+                    Label(String(localized: "刷新"), systemImage: "arrow.clockwise")
                 }
-                .help("刷新列表")
+                .help(String(localized: "刷新列表"))
             }
         }
     }

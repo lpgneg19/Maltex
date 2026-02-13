@@ -1,12 +1,12 @@
-# AppleSword (原生 macOS 版)
+# Maltex (原生 macOS 版)
 
 <p align="center">
-  <img src="AppleSword/Assets.xcassets/AppIcon.appiconset/icon.png" width="128" height="128" alt="AppleSword Logo">
+  <img src="Maltex/Assets.xcassets/AppIcon.appiconset/icon.png" width="128" height="128" alt="Maltex Logo">
   <br>
   <b>基于 SwiftUI 构建的强大原生 macOS 下载工具。</b>
 </p>
 
-AppleSword 是广受欢迎的 [Motrix](https://motrix.app/zh-CN) 下载管理器的原生重构版本，专为 macOS 生态系统设计。通过充分利用 SwiftUI 的性能优势和 `aria2` 引擎的稳定性，AppleSword 为您提供更快速、更高效且深度集成的下载体验。
+Maltex 是广受欢迎的 [Motrix](https://motrix.app/zh-CN) 下载管理器的原生重构版本，专为 macOS 生态系统设计。通过充分利用 SwiftUI 的性能优势和 `aria2` 引擎的稳定性，Maltex 为您提供更快速、更高效且深度集成的下载体验。
 
 [English](./README.md) | [简体中文]
 
@@ -26,7 +26,7 @@ AppleSword 是广受欢迎的 [Motrix](https://motrix.app/zh-CN) 下载管理器
 
 ## 📦 安装与开发
 
-AppleSword 目前处于活跃开发阶段，您可以从源码构建以体验最新功能。
+Maltex 目前处于活跃开发阶段，您可以从源码构建以体验最新功能。
 
 ### 环境要求
 - macOS 14.0+
@@ -36,15 +36,15 @@ AppleSword 目前处于活跃开发阶段，您可以从源码构建以体验最
 ### 构建步骤
 1. **克隆仓库**:
    ```bash
-   git clone https://github.com/agalwood/Motrix.git
-   cd Motrix
+   git clone https://github.com/1pgneg19/Maltex.git
+   cd Maltex
    ```
 2. **生成 Xcode 工程**:
    ```bash
    xcodegen generate
    ```
 3. **编译运行**:
-   打开 `AppleSword.xcodeproj`，选择 `AppleSword` 运行目标并点击运行。
+   打开 `Maltex.xcodeproj`，选择 `Maltex`运行目标并点击运行。
 
 ## 🛠 技术栈
 
@@ -63,19 +63,19 @@ AppleSword 目前处于活跃开发阶段，您可以从源码构建以体验最
    ```
 2. **清理数据**: 如果配置文件损坏，可以尝试清理应用数据目录：
    ```bash
-   rm -rf ~/Library/Application\ Support/AppleSword
+   rm -rf ~/Library/Application\ Support/Maltex
    ```
 3. **查看日志**:
-   - **应用日志**: `~/Library/Application Support/AppleSword/applesword.log`
-   - **引擎日志**: `~/Library/Application Support/AppleSword/aria2.log`
+   - **应用日志**: `~/Library/Application Support/Maltex/maltex.log`
+   - **引擎日志**: `~/Library/Application Support/Maltex/aria2.log`
 
 ## 🤝 参与贡献
 
-欢迎任何形式的贡献、Bug 报告或功能建议！请参阅 [贡献指南](./CONTRIBUTING-CN.md) 了解更多信息。
+欢迎任何形式的贡献、Bug 报告或功能建议！请参阅 [贡献指南](./CONTRIBUTING.md) 了解更多信息。
 
 ## 📜 开源协议
 
-AppleSword 基于 [MIT 协议](./LICENSE) 开源。
+Maltex 基于 [MIT 协议](./LICENSE) 开源。
 
 ---
 *源自 Motrix，为 macOS 而生。*

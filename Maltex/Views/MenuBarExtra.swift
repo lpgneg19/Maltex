@@ -1,13 +1,13 @@
 import AppKit
 import SwiftUI
 
-struct AppleSwordMenuBar: Scene {
+struct MaltexMenuBar: Scene {
     @ObservedObject var taskStore: TaskStore
 
     var body: some Scene {
         MenuBarExtra {
             VStack {
-                Text(LocalizedStringKey("AppleSword"))
+                Text(LocalizedStringKey("Maltex"))
                     .font(.headline)
 
                 Divider()
@@ -18,7 +18,7 @@ struct AppleSwordMenuBar: Scene {
                 } else {
                     ForEach(taskStore.tasks.prefix(5)) { task in
                         HStack {
-                            Text(task.bittorrent?.info?.name ?? task.files.first?.path ?? NSLocalizedString("未知任务", comment: ""))
+                            Text(task.bittorrent?.info?.name ?? task.files.first?.path ?? String(localized: "未知任务"))
                                 .lineLimit(1)
                             Spacer()
                             Text(

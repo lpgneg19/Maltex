@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Configuration
-APP_NAME="AppleSword"
-BUNDLE_ID="app.applesword.native"
+APP_NAME="Maltex"
+BUNDLE_ID="app.maltex.native"
 BUNDLE_PATH="${APP_NAME}.app"
 # Use the icon from the assets in the repo
-ICON_PNG="AppleSword/Assets.xcassets/AppIcon.appiconset/icon.png"
+ICON_PNG="Maltex/Assets.xcassets/AppIcon.appiconset/icon.png"
 
 # Get the script directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -33,16 +33,16 @@ mkdir -p "${BUNDLE_PATH}/Contents/PlugIns"
 
 # 3. Copy binary
 echo "📦 Copying binary..."
-cp ".build/${ARCH}-apple-macosx/release/AppleSword" "${BUNDLE_PATH}/Contents/MacOS/AppleSword"
-chmod +x "${BUNDLE_PATH}/Contents/MacOS/AppleSword"
+cp ".build/${ARCH}-apple-macosx/release/Maltex" "${BUNDLE_PATH}/Contents/MacOS/Maltex"
+chmod +x "${BUNDLE_PATH}/Contents/MacOS/Maltex"
 
 # 3b. Copy Resource Bundle (Crucial for localization)
 echo "📦 Copying resources bundle..."
-cp -r ".build/${ARCH}-apple-macosx/release/AppleSword_AppleSword.bundle" "${BUNDLE_PATH}/Contents/Resources/"
+cp -r ".build/${ARCH}-apple-macosx/release/Maltex_Maltex.bundle" "${BUNDLE_PATH}/Contents/Resources/"
 
 # 3c. Build and Package Safari Extension
 echo "🧩 Building Safari Extension..."
-EXT_NAME="AppleSword Extension"
+EXT_NAME="Maltex Extension"
 EXT_BUNDLE="${BUNDLE_PATH}/Contents/PlugIns/${EXT_NAME}.appex"
 mkdir -p "${EXT_BUNDLE}/Contents/MacOS"
 mkdir -p "${EXT_BUNDLE}/Contents/Resources"
@@ -51,12 +51,12 @@ mkdir -p "${EXT_BUNDLE}/Contents/Resources"
 swiftc -emit-executable \
     -sdk $(xcrun --show-sdk-path) \
     -target ${ARCH}-apple-macosx14.0 \
-    "AppleSwordExtension/SafariWebExtensionHandler.swift" \
+    "MaltexExtension/SafariWebExtensionHandler.swift" \
     -o "${EXT_BUNDLE}/Contents/MacOS/${EXT_NAME}"
 
 # Copy Extension Plist and Resources
-cp "AppleSwordExtension/Info.plist" "${EXT_BUNDLE}/Contents/Info.plist"
-cp -r "AppleSwordExtension/Resources/"* "${EXT_BUNDLE}/Contents/Resources/"
+cp "MaltexExtension/Info.plist" "${EXT_BUNDLE}/Contents/Info.plist"
+cp -r "MaltexExtension/Resources/"* "${EXT_BUNDLE}/Contents/Resources/"
 
 # Ad-hoc Sign the extension
 echo "🔐 Signing Safari Extension..."
@@ -65,7 +65,7 @@ codesign -s - --force --deep "${EXT_BUNDLE}"
 echo "✅ Safari Extension integrated."
 # 4. Copy Info.plist
 echo "📝 Copying Info.plist..."
-cp "AppleSword/Info.plist" "${BUNDLE_PATH}/Contents/Info.plist"
+cp "Maltex/Info.plist" "${BUNDLE_PATH}/Contents/Info.plist"
 
 # 5. Copy aria2c engine
 echo "⚙️ Copying aria2c engine..."
@@ -94,20 +94,20 @@ fi
 # 6. Generate Icon
 if [ -f "$ICON_PNG" ]; then
     echo "🎨 Generating AppIcon.icns..."
-    mkdir -p AppleSword.iconset
-    sips -s format png -z 16 16     "$ICON_PNG" --out AppleSword.iconset/icon_16x16.png > /dev/null 2>&1
-    sips -s format png -z 32 32     "$ICON_PNG" --out AppleSword.iconset/icon_16x16@2x.png > /dev/null 2>&1
-    sips -s format png -z 32 32     "$ICON_PNG" --out AppleSword.iconset/icon_32x32.png > /dev/null 2>&1
-    sips -s format png -z 64 64     "$ICON_PNG" --out AppleSword.iconset/icon_32x32@2x.png > /dev/null 2>&1
-    sips -s format png -z 128 128   "$ICON_PNG" --out AppleSword.iconset/icon_128x128.png > /dev/null 2>&1
-    sips -s format png -z 256 256   "$ICON_PNG" --out AppleSword.iconset/icon_128x128@2x.png > /dev/null 2>&1
-    sips -s format png -z 256 256   "$ICON_PNG" --out AppleSword.iconset/icon_256x256.png > /dev/null 2>&1
-    sips -s format png -z 512 512   "$ICON_PNG" --out AppleSword.iconset/icon_256x256@2x.png > /dev/null 2>&1
-    sips -s format png -z 512 512   "$ICON_PNG" --out AppleSword.iconset/icon_512x512.png > /dev/null 2>&1
-    sips -s format png -z 1024 1024 "$ICON_PNG" --out AppleSword.iconset/icon_512x512@2x.png > /dev/null 2>&1
+    mkdir -p Maltex.iconset
+    sips -s format png -z 16 16     "$ICON_PNG" --out Maltex.iconset/icon_16x16.png > /dev/null 2>&1
+    sips -s format png -z 32 32     "$ICON_PNG" --out Maltex.iconset/icon_16x16@2x.png > /dev/null 2>&1
+    sips -s format png -z 32 32     "$ICON_PNG" --out Maltex.iconset/icon_32x32.png > /dev/null 2>&1
+    sips -s format png -z 64 64     "$ICON_PNG" --out Maltex.iconset/icon_32x32@2x.png > /dev/null 2>&1
+    sips -s format png -z 128 128   "$ICON_PNG" --out Maltex.iconset/icon_128x128.png > /dev/null 2>&1
+    sips -s format png -z 256 256   "$ICON_PNG" --out Maltex.iconset/icon_128x128@2x.png > /dev/null 2>&1
+    sips -s format png -z 256 256   "$ICON_PNG" --out Maltex.iconset/icon_256x256.png > /dev/null 2>&1
+    sips -s format png -z 512 512   "$ICON_PNG" --out Maltex.iconset/icon_256x256@2x.png > /dev/null 2>&1
+    sips -s format png -z 512 512   "$ICON_PNG" --out Maltex.iconset/icon_512x512.png > /dev/null 2>&1
+    sips -s format png -z 1024 1024 "$ICON_PNG" --out Maltex.iconset/icon_512x512@2x.png > /dev/null 2>&1
     
-    iconutil -c icns AppleSword.iconset -o "${BUNDLE_PATH}/Contents/Resources/AppIcon.icns"
-    rm -rf AppleSword.iconset
+    iconutil -c icns Maltex.iconset -o "${BUNDLE_PATH}/Contents/Resources/AppIcon.icns"
+    rm -rf Maltex.iconset
     echo "✅ Icon integrated."
 fi
 
@@ -115,7 +115,7 @@ fi
 echo "APPL????" > "${BUNDLE_PATH}/Contents/PkgInfo"
 
 # Ad-hoc Sign the whole app
-echo "🔐 Signing AppleSword.app..."
+echo "🔐 Signing ${APP_NAME}.app..."
 codesign -s - --force --deep "${BUNDLE_PATH}"
 
-echo "✨ DONE! AppleSword.app is ready."
+echo "✨ DONE! ${APP_NAME}.app is ready."

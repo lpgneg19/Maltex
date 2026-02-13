@@ -57,13 +57,13 @@ struct TorrentConfirmView: View {
                             .symbolRenderingMode(.hierarchical)
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(task.bittorrent?.info?.name ?? "未知种子")
+                            Text(task.bittorrent?.info?.name ?? String(localized: "未知种子"))
                                 .font(.title3)
                                 .fontWeight(.semibold)
                                 .lineLimit(2)
 
                             Text(
-                                "总大小: \(ByteCountFormatterUtil.string(fromByteCount: task.totalLength))"
+                                String(localized: "总大小: ") + ByteCountFormatterUtil.string(fromByteCount: task.totalLength)
                             )
                             .font(.caption)
                             .foregroundColor(.secondary)
@@ -97,7 +97,7 @@ struct TorrentConfirmView: View {
 
                     // Files List Header
                     HStack {
-                        Text("文件列表 (\(task.files.count))")
+                        Text(String(localized: "文件列表 (\(task.files.count))"))
                             .font(.subheadline)
                             .foregroundColor(.secondary)
 

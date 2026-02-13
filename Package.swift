@@ -2,23 +2,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "AppleSword",
+    name: "Maltex",
     platforms: [
         .macOS(.v14)
     ],
     products: [
-        .executable(name: "AppleSword", targets: ["AppleSword"])
+        .executable(name: "Maltex", targets: ["Maltex"])
     ],
     dependencies: [
         .package(url: "https://github.com/baptistecdr/Aria2Kit", from: "1.0.0")
     ],
     targets: [
         .executableTarget(
-            name: "AppleSword",
+            name: "Maltex",
             dependencies: [
                 "Aria2Kit"
             ],
-            path: "AppleSword",
+            path: "Maltex",
             resources: [
                 .process("Assets.xcassets"),
                 .process("Localizable.xcstrings"),

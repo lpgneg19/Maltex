@@ -1,6 +1,6 @@
-# Contributing to AppleSword
+# Contributing to Maltex
 
-First off, thank you for considering contributing to AppleSword! It's people like you that make AppleSword a great tool for everyone.
+First off, thank you for considering contributing to Maltex! It's people like you that make Maltex a great tool for everyone.
 
 This project is a native macOS download manager built with SwiftUI and powered by the `aria2` engine.
 
@@ -12,15 +12,15 @@ By participating in this project, you are expected to uphold our [Code of Conduc
 
 ### Reporting Bugs
 
-- **Check if the bug has already been reported** by searching on the [GitHub Issues](https://github.com/agalwood/Motrix/issues) page.
-- If you can't find an open issue addressing the problem, [open a new one](https://github.com/agalwood/Motrix/issues/new).
+- **Check if the bug has already been reported** by searching on the [GitHub Issues](https://github.com/1pgneg19/Maltex/issues) page.
+- If you can't find an open issue addressing the problem, [open a new one](https://github.com/1pgneg19/Maltex/issues/new).
 - Use a clear and descriptive title.
 - Describe the exact steps which reproduce the problem in as many details as possible.
 
 ### Suggesting Enhancements
 
 - **Check if the enhancement has already been suggested.**
-- [Open a new issue](https://github.com/agalwood/Motrix/issues/new) and describe the enhancement you would like to see, and why it would be useful.
+- [Open a new issue](https://github.com/1pgneg19/Maltex/issues/new) and describe the enhancement you would like to see, and why it would be useful.
 
 ### Pull Requests
 
@@ -42,19 +42,19 @@ By participating in this project, you are expected to uphold our [Code of Conduc
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/agalwood/Motrix.git
-   cd Motrix
+   git clone https://github.com/1pgneg19/Maltex.git
+   cd Maltex
    ```
 
 2. Generate the Xcode Project:
-   AppleSword uses `XcodeGen` to manage the project file. Do not commit `.xcodeproj` files if they are generated locally.
+   Maltex uses `XcodeGen` to manage the project file. Do not commit `.xcodeproj` files if they are generated locally.
    ```bash
    xcodegen generate
    ```
 
 3. Open the project:
    ```bash
-   open AppleSword.xcodeproj
+   open Maltex.xcodeproj
    ```
 
 ### Coding Standards
@@ -66,14 +66,14 @@ By participating in this project, you are expected to uphold our [Code of Conduc
 
 ## Project Structure
 
-- `AppleSword/`: Main application source code.
-- `AppleSwordExtension/`: Safari Web Extension source code.
+- `Maltex/`: Main application source code.
+- `MaltexExtension/`: Safari Web Extension source code.
 - `extra/`: Bundled `aria2c` binaries and default configurations.
 - `project.yml`: XcodeGen project specification.
 
 ## Translation
 
-AppleSword aims to be accessible to everyone. Translations are managed via `.xcstrings` files in the Xcode project. Contributions to localizations are highly appreciated!
+Maltex aims to be accessible to everyone. Translations are managed via `.xcstrings` files in the Xcode project. Contributions to localizations are highly appreciated!
 
 ---
 

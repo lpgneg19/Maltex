@@ -70,6 +70,17 @@ struct DownloadTask: Identifiable, Codable {
         case error
         case complete
         case removed
+
+        var localizedName: String {
+            switch self {
+            case .active: return String(localized: "正在下载")
+            case .waiting: return String(localized: "等待下载")
+            case .paused: return String(localized: "已暂停")
+            case .error: return String(localized: "错误")
+            case .complete: return String(localized: "已完成")
+            case .removed: return String(localized: "已移除")
+            }
+        }
     }
 }
 
