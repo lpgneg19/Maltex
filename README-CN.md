@@ -1,4 +1,4 @@
-# Maltex (原生 macOS 版)
+# Maltex
 
 <p align="center">
   <img src="Maltex/Assets.xcassets/AppIcon.appiconset/icon.png" width="128" height="128" alt="Maltex Logo">
